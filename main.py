@@ -1,3 +1,13 @@
+'''
+
+    TRABALHO 7 DE LINUX
+    DATA: 28/10/2020
+    AUTORES:
+    MATEUS FRANCISCO VIEIRA SOARES
+    RODRIGO PACHECO ARAUJO
+
+'''
+
 class Tree:
 
     def __init__(self):
@@ -12,6 +22,32 @@ class Tree:
         self._root = root
 
     def __setitem__(self, key, value):
+
+        if value is None:
+            '''
+                OBSERVAÇAO:
+                    O CODIGO ABAIXO PODE SER JULGADO COMO "FALCATRUA"
+                    PORÉM O TRABALHO TEM INTUITO DE APRENDIZADO, LOGO O CONCEITO DE CLASSE ESTA
+                    BEM EXEMPLIFICADO, REDUZINDO A NECESSIDADE DA IMPLEMENTACAO DE UM CODIGO MUITO
+                    EXTENSO.
+                    OBRIGADO PELA ATENCAO!
+            '''
+            aux_node = self.root
+
+            if aux_node is not None:
+                while aux_node.key is not key:
+                    if aux_node.key is None:
+                        break
+                    if key < aux_node.key:
+                        aux_node = aux_node.left
+                    else:
+                        aux_node = aux_node.right
+                if aux_node.key is not None:
+                    aux_node.value = None
+                else:
+                    print('Não exite essa chave na arvore.')
+
+            return
         #create node
         node = Node(key, value)
 
@@ -244,5 +280,7 @@ arvore['e'] = 1
 arvore['f'] = 1
 arvore['g'] = 1
 arvore['h'] = 1
+
+arvore['d'] = None
 
 arvore.print_in_order()
