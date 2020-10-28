@@ -1,12 +1,12 @@
 class Tree:
 
     def __init__(self):
-        pass
+        self._node = Node()
 
 
 class Node:
 
-    def __init__(self, key, value, left, right, color, parent):
+    def __init__(self, key=None, value=None, left=None, right=None, color=None, parent=None):
 
         self._key = key
         self._value = value
@@ -64,7 +64,7 @@ class Node:
         self._parent = parent
 
     def __str__(self) -> str:
-        return f'{self._key} --> {self._value}'
+        return f'{self._key} --> {self._value} ({self._color})'
 
     def compareTo(self, other):
         if other is None:
@@ -92,5 +92,5 @@ class Node:
             return avo.right
 
 
-no = Node('um', '1', None, None, 'black', None)
-print(no.key)
+no = Node(color='black')
+print(no)
