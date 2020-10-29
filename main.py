@@ -151,34 +151,34 @@ class Tree:
         if node is None:
             return
         else:
-            self.__in_order(node.left)
-            print(node)
-            self.__in_order(node.right)
+            yield from self.__in_order(node.left)
+            yield node
+            yield from self.__in_order(node.right)
 
     def __pre_order(self, node):
         if node is None:
             return
         else:
-            print(node)
-            self.__pre_order(node.left)
-            self.__pre_order(node.right)
+            yield node
+            yield from self.__pre_order(node.left)
+            yield from self.__pre_order(node.right)
 
     def __pos_order(self, node):
         if node is None:
             return
         else:
-            self.__pre_order(node.left)
-            self.__pre_order(node.right)
-            print(node)
+            yield from self.__pre_order(node.left)
+            yield from self.__pre_order(node.right)
+            yield node
 
-    def print_in_order(self):
-        self.__in_order(self.root)
+    def in_order(self):
+        return self.__in_order(self.root)
 
-    def print_pre_order(self):
-        self.__pre_order(self.root)
+    def pre_order(self):
+        return self.__pre_order(self.root)
 
-    def print_pos_order(self):
-        self.__pos_order(self.root)
+    def pos_order(self):
+        return self.__pos_order(self.root)
 
 class Node:
 
@@ -283,4 +283,5 @@ arvore['h'] = 1
 
 arvore['d'] = None
 
-arvore.print_in_order()
+for i in arvore.pos_order():
+    print(i)
